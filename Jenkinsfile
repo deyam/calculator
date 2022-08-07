@@ -39,4 +39,9 @@ pipeline {
                          }
                     }
      }
+     post{
+             always{
+                 slackSend( channel: "#ais-dev-status", token: "OneWdUWsb4mN7gpzzwX6kmAK", color: "good", message: "Test Email")
+             }
+         }
 }
