@@ -1,5 +1,9 @@
 pipeline {
-     agent{dockerfile {args '-v /var/run/docker.sock:/var/run/docker.sock'}}
+     agent{
+        dockerfile {
+                    args `'-v /var/run/docker.sock:/var/run/docker.sock'`
+                }
+            }
      stages {
           stage("Compile") {
                steps {
