@@ -1,5 +1,5 @@
 pipeline {
-     agent any
+     agent{dockerfile {args '-v /var/run/docker.sock:/var/run/docker.sock'}}
      stages {
           stage("Compile") {
                steps {
@@ -55,7 +55,7 @@ pipeline {
                  slackSend( channel: "#ais-dev-status", token: "OneWdUWsb4mN7gpzzwX6kmAK", color: "good", message: "The pipeline ${currentBuild.fullDisplayName} Succesfully Completed..")
              }
              failure{
-                 slackSend( channel: "#ais-dev-status", token: "OneWdUWsb4mN7gpzzwX6kmAK", color: "good", message: "The pipeline ${currentBuild.fullDisplayName} Completed..")
+                 slackSend( channel: "#ais-dev-status", token: "OneWdUWsb4mN7gpzzwX6kmAK", color: "good", message: "The pipeline ${currentBuild.fullDisplayName} Failed..")
              }
          }
 }
