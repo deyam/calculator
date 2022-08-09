@@ -1,7 +1,7 @@
 pipeline {
      agent {
         docker { image "jenkins/agent:jdk17-preview"
-        args "-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /lib/x86_64-linux-gnu/libc.so.6:/lib/x86_64-linux-gnu/libc.so.6"
+//         args "-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /lib/x86_64-linux-gnu/libc.so.6:/lib/x86_64-linux-gnu/libc.so.6"
         }
     }
      stages {
@@ -48,6 +48,8 @@ pipeline {
                         }
           }
           stage("Docker build") {
+                    docker { image "docker/stable-dind"
+                        }
                         steps {
                             sh "docker build -t deyam/calculator ."
                         }
