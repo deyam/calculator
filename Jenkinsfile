@@ -1,9 +1,7 @@
 pipeline {
-     agent{
-        dockerfile {
-                    args `'-v /var/run/docker.sock:/var/run/docker.sock'`
-                }
-            }
+     agent {
+        docker { image "jenkins/agent:jdk17-preview"}
+    }
      stages {
           stage("Compile") {
                steps {
