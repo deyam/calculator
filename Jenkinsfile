@@ -48,8 +48,7 @@ pipeline {
                         }
           }
           stage("Docker build") {
-                    docker { image "docker/stable-dind"
-                        }
+                    agent { docker { image "docker/stable-dind" } }
                         steps {
                             sh "docker build -t deyam/calculator ."
                         }
