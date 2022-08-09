@@ -4,7 +4,7 @@ pipeline {
      stages {
           stage("Compile") {
           agent {
-                  docker { image "jenkins/agent:jdk17-preview"
+                  docker { image "jenkins/agent:jdk17-preview"}
                   }
                steps {
                     sh "./gradlew compileJava"
@@ -12,8 +12,8 @@ pipeline {
           }
           stage("Unit test") {
           agent {
-                  docker { image "jenkins/agent:jdk17-preview"
-                  }
+                           docker { image "jenkins/agent:jdk17-preview"}
+                           }
                steps {
                     sh "./gradlew test"
                }
@@ -25,10 +25,11 @@ pipeline {
 //                          }
 //                     }
           stage("Code coverage") {
+           agent {
+                            docker { image "jenkins/agent:jdk17-preview"}
+                            }
                steps {
-               agent {
-                       docker { image "jenkins/agent:jdk17-preview"
-                       }
+
                     sh "./gradlew jacocoTestReport"
                     publishHTML (target: [
                          reportDir: 'build/reports/jacoco/test/html',
@@ -39,10 +40,11 @@ pipeline {
                }
           }
           stage("Static code analysis") {
+           agent {
+                            docker { image "jenkins/agent:jdk17-preview"}
+                            }
                          steps {
-                         agent {
-                                 docker { image "jenkins/agent:jdk17-preview"
-                                 }
+
                               sh "./gradlew checkstyleMain"
                               publishHTML (target: [
                                    reportDir: 'build/reports/checkstyle/',
@@ -52,10 +54,11 @@ pipeline {
                          }
                     }
           stage("Package") {
+           agent {
+                            docker { image "jenkins/agent:jdk17-preview"}
+                            }
                         steps {
-                        agent {
-                                docker { image "jenkins/agent:jdk17-preview"
-                                }
+
                             sh "./gradlew build"
                         }
           }
