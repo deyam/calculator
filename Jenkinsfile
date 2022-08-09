@@ -1,6 +1,6 @@
 pipeline {
      agent {
-        docker { image "jenkins/agent:jdk17-preview"}
+        docker { image "jenkins/agent:jdk17-preview" arg '-v /usr/bin/docker:/usr/bin/docker'}
     }
      stages {
           stage("Compile") {
