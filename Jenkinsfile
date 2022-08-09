@@ -1,15 +1,19 @@
 pipeline {
-     agent {
-        docker { image "jenkins/agent:jdk17-preview"
-        }
+     agent none
     }
      stages {
           stage("Compile") {
+          agent {
+                  docker { image "jenkins/agent:jdk17-preview"
+                  }
                steps {
                     sh "./gradlew compileJava"
                }
           }
           stage("Unit test") {
+          agent {
+                  docker { image "jenkins/agent:jdk17-preview"
+                  }
                steps {
                     sh "./gradlew test"
                }
@@ -22,6 +26,9 @@ pipeline {
 //                     }
           stage("Code coverage") {
                steps {
+               agent {
+                       docker { image "jenkins/agent:jdk17-preview"
+                       }
                     sh "./gradlew jacocoTestReport"
                     publishHTML (target: [
                          reportDir: 'build/reports/jacoco/test/html',
@@ -33,6 +40,9 @@ pipeline {
           }
           stage("Static code analysis") {
                          steps {
+                         agent {
+                                 docker { image "jenkins/agent:jdk17-preview"
+                                 }
                               sh "./gradlew checkstyleMain"
                               publishHTML (target: [
                                    reportDir: 'build/reports/checkstyle/',
@@ -43,6 +53,9 @@ pipeline {
                     }
           stage("Package") {
                         steps {
+                        agent {
+                                docker { image "jenkins/agent:jdk17-preview"
+                                }
                             sh "./gradlew build"
                         }
           }
