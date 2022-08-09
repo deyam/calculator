@@ -1,9 +1,5 @@
 pipeline {
      agent { label 'dind'}
-//       {
-//         docker { image "jenkins/agent:jdk17-preview"
-//         }
-    }
      stages {
           stage("Compile") {
                steps {
@@ -15,12 +11,6 @@ pipeline {
                     sh "./gradlew test"
                }
           }
-//           stage("Code coverage") {
-//                          steps {
-//                               sh "./gradlew jacocoTestReport"
-//                               sh "./gradlew jacocoTestCoverageVerification"
-//                          }
-//                     }
           stage("Code coverage") {
                steps {
                     sh "./gradlew jacocoTestReport"
@@ -48,12 +38,10 @@ pipeline {
                         }
           }
           stage("Docker build") {
-//                     agent { docker { image "docker:stable-dind" } }
                         steps {
                             sh "docker build -t deyam/calculator ."
                         }
           }
-
      }
      post{
              success{
