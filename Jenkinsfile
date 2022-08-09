@@ -1,7 +1,7 @@
 pipeline {
      agent {
         docker { image "jenkins/agent:jdk17-preview"
-        args "-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock"
+        args "-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v /lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu"
         }
     }
      stages {
