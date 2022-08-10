@@ -54,8 +54,22 @@ pipeline {
                     sh "docker push deya/calculator"
                }
           }
+          stage("Deploy to staging") {
+               steps {
+                    sh "docker run -d --rm -p 8765:8080 --name calculator deya/calculator"
+               }
+          }
+          stage("Acceptance test") {
+               steps {
+                    sleep 60
+                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+               }
+          }
      }
      post{
+     always {
+               sh "docker stop calculator"
+          }
              success{
                  slackSend( channel: "#ais-dev-status", token: "OneWdUWsb4mN7gpzzwX6kmAK", color: "good", message: "The pipeline ${currentBuild.fullDisplayName} Succesfully Completed..")
              }
