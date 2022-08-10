@@ -39,8 +39,13 @@ pipeline {
           }
           stage("Docker build") {
                         steps {
-                            sh "docker build -t deyam/calculator ."
+                            sh "docker build -t deya/calculator ."
                         }
+          }
+          stage("Docker push") {
+               steps {
+                    sh "docker push deya/calculator"
+               }
           }
      }
      post{
