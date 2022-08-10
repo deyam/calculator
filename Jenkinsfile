@@ -44,7 +44,7 @@ pipeline {
           }
           stage("Docker push") {
                steps {
-                    sh 'docker login -u $dockerhub_USR -p $dockerhub_PSW --password-stdin'
+                    sh 'docker login -u $dockerhub_USR -p $dockerhub_PSW'
                     sh "docker push deya/calculator"
                }
           }
