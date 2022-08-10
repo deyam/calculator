@@ -44,7 +44,13 @@ pipeline {
           }
           stage("Docker push") {
                steps {
-                    sh 'docker login -u $dockerhub_USR -p $dockerhub_PSW'
+
+                withCredentials([usernamePassword(credentialsId: 'DOCKER', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                                   sh """
+                                   docker login --username ${env.user} -p ${env.pass}
+                                   """
+                               }
+
                     sh "docker push deya/calculator"
                }
           }
