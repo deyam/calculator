@@ -1,10 +1,18 @@
 package com.example.calculator;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 @Service
 
 public class Calculator {
+    @Cacheable
         public int sum(int a, int b) {
-            return a + b;
+        try {
+            Thread.sleep(3000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return a + b;
         }
 }
