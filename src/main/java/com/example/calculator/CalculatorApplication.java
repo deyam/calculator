@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableCaching
+//@EnableHazelcastRepositories
 public class CalculatorApplication {
 	private static final String CONSTANT = "constant";
 
@@ -20,6 +21,9 @@ public class CalculatorApplication {
 	public ClientConfig hazelcastClientConfig() {
 		ClientConfig clientConfig = new ClientConfig();
 		clientConfig.getNetworkConfig().addAddress("hazelcast");
+		clientConfig.getNetworkConfig().getKubernetesConfig().setEnabled(true)
+				.setProperty("namespace","default")
+				.setProperty("service-name","hazelcast");
 		HazelcastInstance hazelcastInstanceClient = HazelcastClient.newHazelcastClient(clientConfig);
 
 		return clientConfig;
