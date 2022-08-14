@@ -2,11 +2,11 @@ package com.example.calculator;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-@Service
 
+@Service
 public class Calculator {
     @Cacheable("sum")
-        public int sum(int a, int b) {
+    public int sum(int a, int b) {
         try {
             Thread.sleep(3000);
         }
@@ -14,5 +14,5 @@ public class Calculator {
             e.printStackTrace();
         }
         return a + b;
-        }
+    }
 }
