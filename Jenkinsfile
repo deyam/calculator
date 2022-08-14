@@ -54,6 +54,13 @@ pipeline {
                     sh "docker push deya/calculator:${BUILD_TIMESTAMP}"
                }
           }
+
+          stage("Update version") {
+                         steps {
+                              sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' deployment.yaml"
+                         }
+                    }
+
           stage("Deploy to staging") {
                steps {
                     sh "docker run -d --rm -p 8765:8080 --name calculator deya/calculator:${BUILD_TIMESTAMP}"

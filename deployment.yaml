@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: calculator
-          image: deya/calculator:caching
+          image: deya/calculator:{{VERSION}}
           ports:
             - containerPort: 8080
