@@ -39,7 +39,7 @@ pipeline {
           }
           stage("Docker build") {
                         steps {
-                            sh "docker build -t deya/calculator:caching ."
+                            sh "docker build -t deya/calculator:${BUILD_TIMESTAMP} ."
                         }
           }
           stage("Docker push") {
@@ -51,12 +51,12 @@ pipeline {
                                    """
                                }
 
-                    sh "docker push deya/calculator:caching"
+                    sh "docker push deya/calculator:${BUILD_TIMESTAMP}"
                }
           }
           stage("Deploy to staging") {
                steps {
-                    sh "docker run -d --rm -p 8765:8080 --name calculator deya/calculator:caching"
+                    sh "docker run -d --rm -p 8765:8080 --name calculator deya/calculator:${BUILD_TIMESTAMP}"
                }
           }
 //           stage("Acceptance test") {
