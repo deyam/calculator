@@ -7,7 +7,6 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
-                    cleanWs()
                     sh "./gradlew compileJava"
                }
           }
@@ -93,6 +92,8 @@ pipeline {
      post{
      always {
                sh "docker stop calculator"
+                                   cleanWs()
+
           }
              success{
                  slackSend( channel: "#ais-dev-status", token: "OneWdUWsb4mN7gpzzwX6kmAK", color: "good", message: "The pipeline ${currentBuild.fullDisplayName} Succesfully Completed..")
