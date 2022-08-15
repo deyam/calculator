@@ -1,5 +1,8 @@
 pipeline {
      agent { label 'dind'}
+       environment {
+                    KUBECONFIG=~/.kube/admin.config
+                    }
      stages {
           stage("Compile") {
                steps {
@@ -62,9 +65,7 @@ pipeline {
                     }
 
           stage("Deploy to staging") {
-               environment {
-               KUBECONFIG=~/.kube/admin.config
-               }
+
                steps {
                     sh "docker run -d --rm -p 8765:8080 --name calculator deya/calculator:${BUILD_TIMESTAMP}"
                     sh "kubectl config use-context uat"
