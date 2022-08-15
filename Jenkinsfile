@@ -7,6 +7,7 @@ pipeline {
      stages {
           stage("Compile") {
                steps {
+                    cleanWs()
                     sh "./gradlew compileJava"
                }
           }
