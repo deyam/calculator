@@ -1,7 +1,7 @@
 pipeline {
      agent { label 'dind'}
        environment {
-                    KUBECONFIG="~/.kube/admin.config"
+                    KUBECONFIG="/home/jenkins/.kube/admin.config"
                     }
      stages {
           stage("Compile") {
