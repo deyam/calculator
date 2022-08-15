@@ -28,6 +28,7 @@ pipeline {
 //                     sh "./gradlew jacocoTestCoverageVerification"
 //                }
 //           }
+// Skipped for now..
           stage("Static code analysis") {
                          steps {
                               sh "./gradlew checkstyleMain"
