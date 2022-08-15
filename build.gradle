@@ -32,6 +32,13 @@ tasks.register('acceptanceTest', Test) {
 	include '**/acceptance/**'
 	systemProperties System.getProperties()
 }
+
+tasks.register('smokeTest', Test) {
+	include '**/smoke/**'
+	systemProperties System.getProperties()
+}
+
+
 test {
 	useJUnitPlatform()
 	exclude '**/acceptance/**'
