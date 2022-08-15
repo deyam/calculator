@@ -64,6 +64,10 @@ pipeline {
           stage("Deploy to staging") {
                steps {
                     sh "docker run -d --rm -p 8765:8080 --name calculator deya/calculator:${BUILD_TIMESTAMP}"
+                    sh "kubectl config use-context uat"
+                    sh "kubectl apply -f hazelcast.yaml"
+                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl apply -f service.yaml"
                }
           }
 //           stage("Acceptance test") {
