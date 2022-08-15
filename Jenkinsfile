@@ -4,6 +4,9 @@ pipeline {
        environment {
                     KUBECONFIG="/home/jenkins/.kube/admin.config"
                     }
+                    triggers {
+                         pollSCM('* * * * *')
+                    }
      stages {
           stage("Compile") {
                steps {
