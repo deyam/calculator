@@ -20,7 +20,6 @@ pipeline {
           }
 //           stage("Code coverage") {
 //                steps {
-// test1
 //                     sh "./gradlew jacocoTestReport"
 //                     publishHTML (target: [
 //                          reportDir: 'build/reports/jacoco/test/html',
