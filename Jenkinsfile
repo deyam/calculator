@@ -74,12 +74,12 @@ pipeline {
                     sh "kubectl apply -f service.yaml"
                }
           }
-//           stage("Acceptance test") {
-//                steps {
-//                     sleep 60
-//                     sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
-//                }
-//           }
+          stage("Acceptance test") {
+               steps {
+                    sleep 60
+                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+               }
+          }
      }
      post{
      always {
