@@ -83,7 +83,7 @@ pipeline {
                     sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
                }
           }
-          stage("Smoke test") {
+          stage("Smoke Test") {
                         steps {
                             sleep 60
                             sh "chmod +x smoke-test.sh && ./smoke-test.sh"
