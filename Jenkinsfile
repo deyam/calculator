@@ -1,8 +1,6 @@
 pipeline {
      agent { label 'dind'}
-     triggers {
-               pollSCM('* * * * *')
-          }
+
        environment {
                     KUBECONFIG="/home/jenkins/.kube/admin.config"
                     }
