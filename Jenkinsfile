@@ -80,6 +80,12 @@ pipeline {
                     sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
                }
           }
+          stage("Smoke test") {
+                        steps {
+                            sleep 60
+                            sh "chmod +x smoke-test.sh && ./smoke-test.sh"
+                        }
+                    }
      }
      post{
      always {
